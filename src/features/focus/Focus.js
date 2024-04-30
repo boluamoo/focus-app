@@ -10,7 +10,7 @@ export const Focus = () => {
         <Text style={styles.title}>What would you like to focus on?</Text>
         <View style={styles.inputContainer}>
           <TextInput style={styles.input} />
-          <RoundedButton size={50} title="+" onPress={() => null} />
+          <RoundedButton style={styles.rounded} size={50} title="+" onPress={() => null} />
         </View>
       </View>
     </SafeAreaView>
@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 12,
     flex: 1,
-    // marginRight: 20,
   },
+  rounded: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 })

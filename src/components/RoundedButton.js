@@ -4,12 +4,12 @@ import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 export const RoundedButton = ({
   style = {},
   textStyle = {},
-  size = 125,
+  size = {},
   ...props
 }) => {
   return (
     <TouchableOpacity style={[styles(size).radius, style]}>
-      <Text style={[styles.text, textStyle]}>{props.title}</Text>
+      <Text style={[styles(size).text, textStyle]}>{props.title}</Text>
     </TouchableOpacity>
   )
 }
@@ -20,8 +20,6 @@ const styles = (size) =>
       borderRadius: size / 2,
       width: size,
       height: size,
-      alignItems: 'center',
-      justifyContent: 'center',
       borderColor: 'white',
       borderWidth: 2,
     },
