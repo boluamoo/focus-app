@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { colors } from '../utils/colors'
 
 export const RoundedButton = ({
   style = {},
   textStyle = {},
-  size = {},
+  size=125,
   ...props
 }) => {
   return (
-    <TouchableOpacity style={[styles(size).radius, style]}>
+    <TouchableOpacity
+      style={[styles(size).radius, style]}
+      onPress={props.onPress}
+    >
       <Text style={[styles(size).text, textStyle]}>{props.title}</Text>
     </TouchableOpacity>
   )
@@ -22,9 +26,11 @@ const styles = (size) =>
       height: size,
       borderColor: 'white',
       borderWidth: 2,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     text: {
-      color: '#fff',
-      fontSize: size / 3,
+      color: colors.white,
+      fontSize: size / 4,
     },
   })
