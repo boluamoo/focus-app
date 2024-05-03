@@ -6,12 +6,14 @@ import { Timer } from './src/features/timer/Timer'
 import { spacing } from './src/utils/sizes'
 
 export default function App() {
-  const [focusSubject, setFocusSubject] = useState('Love me JeJe')
+  const [focusSubject, setFocusSubject] = useState(null)
 
   return (
     <SafeAreaView style={styles.container}>
       {focusSubject ? (
-        <Timer focusSubject={focusSubject} />
+        <Timer focusSubject={focusSubject} onTimerEnd={() => {
+          setFocusSubject(null);
+        }} />
       ) : (
         <Focus addSubject={setFocusSubject} />
       )}
