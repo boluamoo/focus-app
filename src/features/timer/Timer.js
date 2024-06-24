@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,47 +6,47 @@ import {
   View,
   Platform,
   Vibration,
-} from 'react-native'
-import { colors } from '../../utils/colors'
-import { spacing } from '../../utils/sizes'
-import { Countdown } from '../../components/Countdown'
-import { RoundedButton } from '../../components/RoundedButton'
-import { ProgressBar } from 'react-native-paper'
-import { Timing } from './Timing'
-import { useKeepAwake } from 'expo-keep-awake'
+} from "react-native";
+import { colors } from "../../utils/colors";
+import { spacing } from "../../utils/sizes";
+import { Countdown } from "../../components/Countdown";
+import { RoundedButton } from "../../components/RoundedButton";
+import { ProgressBar } from "react-native-paper";
+import { Timing } from "./Timing";
+import { useKeepAwake } from "expo-keep-awake";
 
-const DEFAULT_TIME = 1
+const DEFAULT_TIME = 1;
 
-export const Timer = ({ focusSubject, onTimerEnd }) => {
-  useKeepAwake()
-  const [minutes, setMinutes] = useState(DEFAULT_TIME)
-  const [isStarted, setIsStarted] = useState(false)
-  const [progress, setProgress] = useState(1)
+export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
+  useKeepAwake();
+  const [minutes, setMinutes] = useState(DEFAULT_TIME);
+  const [isStarted, setIsStarted] = useState(false);
+  const [progress, setProgress] = useState(1);
 
   const onProgress = (progress) => {
-    setProgress(progress)
-  }
+    setProgress(progress);
+  };
 
   const vibrate = () => {
-    if (Platform.OS === 'ios') {
-      const interval = setInterval(() => Vibration.vibrate())
-      setTimeout(() => clearInterval(interval), 10000)
+    if (Platform.OS === "ios") {
+      const interval = setInterval(() => Vibration.vibrate());
+      setTimeout(() => clearInterval(interval), 10000);
     } else {
-      Vibration.vibrate(10000)
+      Vibration.vibrate(10000);
     }
-  }
+  };
   const onEnd = () => {
-    vibrate()
-    setMinutes(DEFAULT_TIME)
-    setProgress(1)
-    setIsStarted(false)
-    onTimerEnd()
-  }
+    vibrate();
+    setMinutes(DEFAULT_TIME);
+    setProgress(1);
+    setIsStarted(false);
+    onTimerEnd();
+  };
   const changeTime = (min) => {
-    setMinutes(min)
-    setProgress(1)
-    setIsStarted(false)
-  }
+    setMinutes(min);
+    setProgress(1);
+    setIsStarted(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -74,13 +74,19 @@ export const Timer = ({ focusSubject, onTimerEnd }) => {
       </View>
       <View style={styles.buttonWrapper}>
         <RoundedButton
-          title={isStarted ? 'pause' : 'start'}
+          title={isStarted ? "pause" : "start"}
+          style={{
+            borderColor: isStarted ? "green" : "red",
+          }}
           onPress={() => setIsStarted(!isStarted)}
         />
       </View>
+      <View style={styles.clearSubject}>
+        <RoundedButton title="-" size={50} onPress={() => clearSubject()} />
+      </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -88,24 +94,28 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.white,
-    textAlign: 'center',
+    textAlign: "center",
   },
   task: {
-    textAlign: 'center',
+    textAlign: "center",
     color: colors.white,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   countdown: {
     flex: 0.5,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonWrapper: {
     flex: 0.3,
-    flexDirection: 'row',
+    flexDirection: "row",
     padding: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  clearSubject: {
+    paddingBottom: 25,
+    paddingLeft: 25,
   },
   progress: {},
-})
+});

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { Text, SafeAreaView, StyleSheet, View } from 'react-native'
-import { TextInput } from 'react-native'
-import { RoundedButton } from '../../components/RoundedButton'
-import { fontSizes, paddingSizes, spacing } from '../../utils/sizes'
-import { colors } from '../../utils/colors'
+import React, { useState } from "react";
+import { Text, SafeAreaView, StyleSheet, View } from "react-native";
+import { TextInput } from "react-native";
+import { RoundedButton } from "../../components/RoundedButton";
+import { fontSizes, paddingSizes, spacing } from "../../utils/sizes";
+import { colors } from "../../utils/colors";
 
 export const Focus = ({ addSubject }) => {
-  const [tmpItem, setTmpItem] = useState(null)
+  const [tmpItem, setTmpItem] = useState(null);
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -15,7 +15,7 @@ export const Focus = ({ addSubject }) => {
           <TextInput
             style={styles.input}
             onSubmitEditing={({ nativeEvent: { text } }) => {
-              setTmpItem(text)
+              setTmpItem(text);
             }}
           />
           <RoundedButton
@@ -23,14 +23,14 @@ export const Focus = ({ addSubject }) => {
             size={50}
             title="+"
             onPress={() => {
-              addSubject(tmpItem)
+              addSubject(tmpItem);
             }}
           />
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -39,18 +39,18 @@ const styles = StyleSheet.create({
   titleContainer: {
     flex: 0.5,
     padding: spacing.md,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   title: {
     color: colors.white,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: fontSizes.lg,
   },
   inputContainer: {
     marginTop: 20,
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   input: {
     backgroundColor: colors.white,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   rounded: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
-})
+});
