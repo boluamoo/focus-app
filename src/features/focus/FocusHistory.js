@@ -27,6 +27,18 @@ export const FocusHistory = ({ focusHistory, onClear }) => {
                 renderItem={HistoryItem}
               />
             </ScrollView>
+            <View
+              style={[
+                styles.clearContainer,
+                { alignSelf: "center", padding: spacing.md },
+              ]}
+            >
+              <RoundedButton
+                size={75}
+                title="Clear"
+                onPress={() => onClear()}
+              />
+            </View>
           </>
         )}
       </SafeAreaView>
