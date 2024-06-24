@@ -76,7 +76,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
         <RoundedButton
           title={isStarted ? "pause" : "start"}
           style={{
-            borderColor: isStarted ? "green" : "red",
+            borderColor: !isStarted ? "green" : "red",
           }}
           onPress={() => setIsStarted(!isStarted)}
         />

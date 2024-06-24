@@ -5,16 +5,21 @@ import { colors } from "./src/utils/colors";
 import { Timer } from "./src/features/timer/Timer";
 import { spacing } from "./src/utils/sizes";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { FocusHistory } from "./src/features/focus/FocusHistory";
 
 export default function App() {
+  const STATUSES = {
+    COMPLETE: 1,
+    CANCELED: 2,
+  };
   const [focusSubject, setFocusSubject] = useState(null);
   const [focusHistory, setFocusHistory] = useState([]);
 
-  useEffect(() => {
-    if (focusSubject) {
-      setFocusHistory([...focusHistory, focusSubject]);
-    }
-  }, [focusSubject]);
+  const addFocusHistorySubjectWithState = (subject, status) => {
+    setFocusHistory([...focusHistory, { subject, status }]);
+  };
+
+  const onClear = () => {};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,12 +27,19 @@ export default function App() {
         <Timer
           focusSubject={focusSubject}
           onTimerEnd={() => {
+            addFocusHistorySubjectWithState(focusSubject, STATUSES.COMPLETE);
             setFocusSubject(null);
           }}
-          clearSubject={() => setFocusSubject(null)}
+          clearSubject={() => {
+            addFocusHistorySubjectWithState(focusSubject, STATUSES.CANCELED);
+            setFocusSubject(null);
+          }}
         />
       ) : (
-        <Focus addSubject={setFocusSubject} />
+        <>
+          <Focus addSubject={setFocusSubject} />
+          <FocusHistory focusHistory={focusHistory} onClear={onClear} />
+        </>
       )}
     </SafeAreaView>
   );
