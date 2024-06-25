@@ -4,7 +4,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { fontSizes, spacing } from "../../utils/sizes";
 import { RoundedButton } from "../../components/RoundedButton";
 
-
 const HistoryItem = ({ item, index }) => {
   return <Text style={styles.historyItem(item.status)}>{item.subject}</Text>;
 };
