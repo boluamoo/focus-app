@@ -10,11 +10,7 @@ export const Focus = ({ addSubject }) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text
-          className="
-        text-white font-bold text-2xl
-        "
-        >
+        <Text className="text-white font-bold text-2xl">
           What would you like to focus on?
         </Text>
         <View style={styles.inputContainer}>
