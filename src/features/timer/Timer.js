@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  Platform,
-  Vibration,
-} from "react-native";
+import { StyleSheet, Text, View, Platform, Vibration } from "react-native";
 import { colors } from "../../utils/colors";
 import { spacing } from "../../utils/sizes";
 import { Countdown } from "../../components/Countdown";
